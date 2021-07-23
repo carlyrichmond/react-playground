@@ -26,11 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'  
-    - name: Install dependencies
-        run: cd wellness-visualisations && npm install    
-      - name: Test
-        run: npm test
-        env:
-          CI: true
-      - name: Generate build
-        run: cd wellness-visualisations && npm run build
+    - run: cd wellness-visualisations && npm ci
+    - run: cd wellness-visualisations && npm run build --if-present
+    - run: cd wellness-visualisations && npm run test
